@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="https://s2.loli.net/2022/01/30/b7StJg3nVa8QWm4.png">
+    <title>新年虎</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+
+    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"></script>
+    <style>
+
+        body {
+            font-family: sans-serif;
+            background: url("https://macjpeg.macsc.com/macw/pic/202201/04112307_d8e8e2af15.jpeg") no-repeat center center;
+            background-size: cover;
+            background-color: #000;
+        }
+
+        .cypto-icon {
+            width: 2rem;
+        }
+        .bgalpha {
+            background: rgba(255,255,255,0.05);
+        }
+        .bgalpha2 {
+            background: rgba(48, 51, 46, 0.85);
+            border-radius: 2rem;
+            padding: 1rem;
+        }
+    </style>
+</head>
+
+<body class="vw-100 vh-100 d-flex flex-column justify-content-between">
+<nav  class="navbar bgalpha">
+    <div class="container">
+        <h3 class="d-flex text-danger">
+            <img src="https://s2.loli.net/2022/01/30/b7StJg3nVa8QWm4.png" type="" class="cypto-icon">
+            新年虎
+        </h3>
+        <button class="btn btn-outline-warning" id="onboard">
+            <img src="https://www.svgrepo.com/show/260678/wallet.svg" class="cypto-icon me-1">
+
+            <span id="onboardAccount">0x0000...0000</span>
+        </button>
+    </div>
+</nav >
+<div class="container">
+
+    <div class="row align-items-center">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 mb-3 bgalpha2 text-light">
+            <div class="d-flex justify-content-between">
+                <div>
+                    <table class="table text-light border-0">
+                        <tr>
+                            <td>name</td>
+                            <td>Spring Tiger Token</td>
+                        </tr>
+                        <tr>
+                            <td>symbol</td>
+                            <td>STT</td>
+                        </tr>
+                        <tr>
+                            <td>totalSupply</td>
+                            <td>100,000,000</td>
+                        </tr>
+                    </table>
+                </div>
+            <div class="d-flex flex-column align-items-center">
+                <img src="https://s2.loli.net/2022/01/30/b7StJg3nVa8QWm4.png" style="width: 5rem">
+                <p>
+                    <button class="btn btn-danger mt-3 btn-sm" onclick="addTokenToWallet()">添加到钱包</button>
+                </p>
+            </div>
+            </div>
+            <p>
+                8级分红: 4%，1.5%，1%，0.5%，0.4%，0.3%，0.2%，0.1%
+            </p>
+        </div>
+    </div>
+    <div class="row align-items-center">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 mb-3 bgalpha2">
+            <div class="text-center mb-3">
+                <a target="_blank" class="btn btn-warning me-3" id="swap">薄饼购买</a>
+                <a target="_blank" class="btn btn-danger" id="kLine">k线图</a>
+            </div>
+            <p class="text-light">新年虎空投10个</p>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Spring Tiger空投10个" disabled>
+                <button class="btn btn-outline-warning" type="button" id="airdropButon" disabled onclick="airdrop()">领取空投</button>
+            </div>
+
+            <p class="text-light">推广链接</p>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="领取空投后自动生成" id="myInput" readonly>
+                <button class="btn btn-outline-warning" type="button" onclick="copy()" id="copyButton">复制</button>
+            </div>
+            <div class="d-flex flex-column justify-content-center align-items-center text-warning mb-3">
+                <p class="text-center">推广奖励（BNB）</p>
+                <p id="utmPrize">0.0</p>
+                <button class="btn btn-danger" onclick="withdraw()" id="withdrawButton">提取奖励</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="py-3">
+    <div class="container">
+        <p class="text-center fs-3 text-light"><a href="https://t.me/springTiger" class="bi bi-telegram text-decoration-none text-danger"> telegram</a></p>
+        <p class="text-center text-light">@Copy right 2022.   </p>
+    </div>
+</div>
+
+<script src="./onboarding.lib.js"></script>
+<script src="./all.js"></script>
+
+<script>
+    function copy() {
+        /* Get the text field */
+        var copyText = document.getElementById("myInput");
+
+        /* Select the text field */
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+        /* Copy the text inside the text field */
+        navigator.clipboard.writeText(copyText.value);
+
+        /* Alert the copied text */
+        alert("Copied the text: " + copyText.value);
+    }
+    window.onload = function () {
+        $("#swap").attr("href", pancakeSwap[defaultChain])
+        $("#kLine").attr("href", kLine)
+    }
+</script>
+</body>
+
+</html>
