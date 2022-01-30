@@ -114,6 +114,8 @@ let pancakeSwap = {
     "bscChainMainNet": "https://pancakeswap.finance/swap?outputCurrency="+config.contract,
     "bscChainTestNet": "https://pancake.kiemtienonline360.com/#/swap?outputCurrency="+config.contract,
 }
+
+let host = "https://springtigertoken.github.io"
 let kLine = "https://poocoin.app/tokens/"+config.contract
 let chainInfo = {
     "bscChainTestNet": {
@@ -323,7 +325,6 @@ async function initContract() {
     await getUtmBalance()
 }
 
-let host = "https://aaa.com"
 async function checkAirdrop() {
     const airdropInput = $("#airdropInput")
     const airdropButon = $("#airdropButon")
