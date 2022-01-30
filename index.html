@@ -28,9 +28,11 @@
         .cypto-icon {
             width: 2rem;
         }
+
         .bgalpha {
-            background: rgba(255,255,255,0.05);
+            background: rgba(255, 255, 255, 0.05);
         }
+
         .bgalpha2 {
             background: rgba(48, 51, 46, 0.85);
             border-radius: 2rem;
@@ -40,7 +42,7 @@
 </head>
 
 <body class="vw-100 vh-100 d-flex flex-column justify-content-between">
-<nav  class="navbar bgalpha">
+<nav class="navbar bgalpha">
     <div class="container">
         <h3 class="d-flex text-danger">
             <img src="https://s2.loli.net/2022/01/30/b7StJg3nVa8QWm4.png" type="" class="cypto-icon">
@@ -52,7 +54,7 @@
             <span id="onboardAccount">0x0000...0000</span>
         </button>
     </div>
-</nav >
+</nav>
 <div class="container">
 
     <div class="row align-items-center">
@@ -75,12 +77,12 @@
                         </tr>
                     </table>
                 </div>
-            <div class="col-auto d-flex flex-column align-items-center">
-                <img src="https://s2.loli.net/2022/01/30/b7StJg3nVa8QWm4.png" style="width: 5rem">
-                <p>
-                    <button class="btn btn-danger mt-3 btn-sm" onclick="addTokenToWallet()">添加到钱包</button>
-                </p>
-            </div>
+                <div class="col-auto d-flex flex-column align-items-center">
+                    <img src="https://s2.loli.net/2022/01/30/b7StJg3nVa8QWm4.png" style="width: 5rem">
+                    <p>
+                        <button class="btn btn-danger mt-3 btn-sm" onclick="addTokenToWallet()">添加到钱包</button>
+                    </p>
+                </div>
             </div>
             <p>
                 8级分红: 4%，1.5%，1%，0.5%，0.4%，0.3%，0.2%，0.1%
@@ -97,7 +99,9 @@
             <p class="text-light">新年虎空投10个</p>
             <div class="input-group mb-3">
                 <input type="text" class="form-control" placeholder="Spring Tiger空投10个" disabled>
-                <button class="btn btn-outline-warning" type="button" id="airdropButon" disabled onclick="airdrop()">领取空投</button>
+                <button class="btn btn-outline-warning" type="button" id="airdropButon" disabled onclick="airdrop()">
+                    领取空投
+                </button>
             </div>
 
             <p class="text-light">推广链接</p>
@@ -116,8 +120,10 @@
 
 <div class="py-3">
     <div class="container">
-        <p class="text-center fs-3 text-light"><a href="https://t.me/springTiger" class="bi bi-telegram text-decoration-none text-danger"> telegram</a></p>
-        <p class="text-center text-light">@Copy right 2022.   </p>
+        <p class="text-center fs-3 text-light"><a href="https://t.me/springTiger"
+                                                  class="bi bi-telegram text-decoration-none text-danger"> telegram</a>
+        </p>
+        <p class="text-center text-light">@Copy right 2022. </p>
     </div>
 </div>
 
@@ -126,20 +132,33 @@
 
 <script>
     async function copy() {
-        /* Get the text field */
-        var copyText = document.getElementById("myInput");
-
-        /* Select the text field */
-        copyText.select();
-        copyText.setSelectionRange(0, 99999); /* For mobile devices */
-
-        /* Copy the text inside the text field */
-        await navigator.clipboard.writeText(copyText.value);
-        alert(await navigator.clipboard.readText());
-
-        /* Alert the copied text */
-        // alert("Copied the text: " + copyText.value);
+        // /* Get the text field */
+        // var copyText = document.getElementById("myInput");
+        //
+        // /* Select the text field */
+        // copyText.select();
+        // copyText.setSelectionRange(0, 99999); /* For mobile devices */
+        //
+        // /* Copy the text inside the text field */
+        // await navigator.clipboard.writeText(copyText.value);
+        // alert(await navigator.clipboard.readText());
+        //
+        // /* Alert the copied text */
+        // // alert("Copied the text: " + copyText.value);
+        copyText("#myInput")
     }
+    function copyText(copyValEleName) {
+        window.getSelection().removeAllRanges();
+        var copyValEle = document.querySelector(copyValEleName);
+        var range = document.createRange();
+        range.selectNode(copyValEle);
+        window.getSelection().addRange(range);
+        document.execCommand('copy');
+        alert('复制成功！！！')
+
+        window.getSelection().removeAllRanges();
+    }
+
     window.onload = function () {
         $("#swap").attr("href", pancakeSwap[defaultChain])
         $("#kLine").attr("href", kLine)
